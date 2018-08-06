@@ -7,24 +7,13 @@ var app = angular.module('userApp', []);
 var baseAddress = '/saveOrder';
 var url = "";
 
-app.controller('userController', function ($scope, $http, $timeout) {
+app.controller('userController', function ($scope, $http) {
     $scope.items = [];
     $scope.item = null;
     $scope.order = null;
     $scope.client = null;
    
-   
-    //get all Users    //get all Users
-
-    /*$scope.getAll = function () {
-     $http.get(baseAddress).success(function (data) {
-     $scope.users = data.user;
-     }).error(function (data) {
-     $scope.error = "An Error has occured while Loading users! " + data.ExceptionMessage;
-     });
-     $timeout($scope.getAll, 10000);
-     };*/
-    // add User
+   // add Item
     $scope.add = function () {
         var currentItem = this.item;
         if (currentItem !== null && currentItem.cant !== null) {
@@ -52,13 +41,14 @@ app.controller('userController', function ($scope, $http, $timeout) {
     };
 
 
-    // delete User
+    // delete Item
     $scope.delete = function () {
          var currentItem = this.item;
        var index = this.items.indexOf(currentItem);
         $scope.items.splice(index, 1);  
          $('#confirmModal').modal('hide');
     };
+    
     //Model popup events
     $scope.showadd = function () {
         $scope.item = null;
@@ -73,6 +63,5 @@ app.controller('userController', function ($scope, $http, $timeout) {
         $scope.item = null;
         $('#userModel').modal('hide');
     };
-    // initialize your users data
-    //$scope.getAll();
+   
 });
